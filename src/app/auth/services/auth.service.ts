@@ -29,11 +29,14 @@ export class AuthService {
       })
     )
   }
+ // adicao de confirmacao logout
+
+
 
   signOut(): void {
     this.dialog.open(ConfirmarLogoutComponent).afterClosed()
-    .subscribe((deslogar) => {
-      if(deslogar) {
+    .subscribe((logout) => {
+      if(logout) {
         this.removerToken()
         this.router.navigateByUrl('/auth/login')
       }
