@@ -60,6 +60,7 @@ export class AuthService {
   logado(): boolean {
     // o usuário estará logado se o token estiver armazenado
     // e o token ainda for válido
+    
     const token = this.recuperarToken()
 
     if (token == null) {
