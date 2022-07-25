@@ -87,7 +87,7 @@ export class CargoComponent implements OnInit {
               this.snackbar.open('Cargo salvo com sucesso', 'Ok', {
                 duration: 3000
               })
-
+              this.cargo = carg
               this.recuperarCargo(carg.id)
             }
           )
