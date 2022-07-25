@@ -34,7 +34,7 @@ export class CargoService {
     })
   }
 
-  deleteCargo(cargo: Cargo) {
+  deleteCargo(cargo: Cargo): Observable<any> {
     const token = this.auth.recuperarToken()
     return this.http.delete(`${this.baseUrl}/${cargo.idCargo}`, {
       headers: {

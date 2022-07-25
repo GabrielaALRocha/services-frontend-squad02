@@ -70,4 +70,15 @@ export class AuthService {
     return !this.jwt.isTokenExpired(token) // testando a validade do token
   }
 
+  tempoApp() {
+    
+    const token = this.recuperarToken()?.toString()
+    console.log(this.jwt.decodeToken(token).sub)
+    return this.jwt.getTokenExpirationDate(token)
+  }
+  getEmailToken() {
+    const token = this.recuperarToken()?.toString()
+    console.log(this.jwt.decodeToken(token).sub)
+    return this.jwt.decodeToken(token).sub
+  }
 }

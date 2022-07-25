@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  
+
   constructor(
     public authService: AuthService,
     private route: Router
@@ -26,5 +26,11 @@ export class NavbarComponent implements OnInit {
   chamarCargos() {
 
     this.route.navigateByUrl("/cargos")
+  }
+  getEmailToken(){
+    return this.authService.getEmailToken()
+  }
+  tempoToken(){
+    return this.authService.tempoApp()
   }
 }

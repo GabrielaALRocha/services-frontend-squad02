@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'cargos',
-    loadChildren: () => import('./funcionarios copy/cargos.module').then(m =>m.CargoModule)
+    loadChildren: () => import('./cargo/cargos.module').then(m =>m.CargoModule)
   }
 ];
 
