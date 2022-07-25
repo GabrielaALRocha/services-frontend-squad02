@@ -2,12 +2,16 @@
   <mat-toolbar-row>
     <h1>Services</h1>
     <span class="separador"></span>
-    <button mat-button [matMenuTriggerFor]="menuFuncionarios">Funcionários</button>
+    <button mat-button [matMenuTriggerFor]="menuFuncionarios">Menu</button>
     <mat-menu #menuFuncionarios="matMenu">
-      <a
+      <label
         mat-menu-item
-        routerLink="/funcionarios"
-      >Listar</a>
+        (click)="chamarFuncionario()"
+      >Funcionarios</label>
+      <label
+      mat-menu-item
+      (click)="chamarCargos()"
+    >Cargos</label>
     </mat-menu>
 
     <button mat-icon-button (click)="authService.signOut()">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -8,10 +9,22 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
+  }
+
+  chamarFuncionario() {
+
+    this.route.navigateByUrl("/funcionarios")
+  }
+
+  chamarCargos() {
+
+    this.route.navigateByUrl("/cargos")
   }
 }
