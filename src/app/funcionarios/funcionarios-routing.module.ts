@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VerificacaoTokenGuard } from '../guards/verificacao-token.guard';
+
 import { IdValidatorGuard } from './guards/id-validator.guard';
+
 import { PodeSairGuard } from './guards/pode-sair.guard';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { ListarFuncionariosComponent } from './pages/listar-funcionarios/listar-funcionarios.component';
@@ -13,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: ':idFuncionario',
-        component: FuncionarioComponent,
+        component: FuncionarioComponent, 
         canDeactivate: [
           PodeSairGuard
         ],
@@ -21,7 +23,8 @@ const routes: Routes = [
           IdValidatorGuard,
           VerificacaoTokenGuard
         ]
-      }
+      },
+         
     ],
     canActivate: [
       VerificacaoTokenGuard
