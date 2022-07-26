@@ -1,13 +1,23 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <h1>Services</h1>
+    <div class="infos">
+      
+      <span class="tempo"><mat-icon class="icon">alarm</mat-icon>{{tempoToken()}}</span>
+      
+      <span class="email"><mat-icon class="icon">perm_identity</mat-icon>{{getEmailToken()}}</span>
+    </div>
     <span class="separador"></span>
-    <button mat-button [matMenuTriggerFor]="menuFuncionarios">Funcionários</button>
+    <button mat-button [matMenuTriggerFor]="menuFuncionarios">Menu</button>
     <mat-menu #menuFuncionarios="matMenu">
-      <a
+      <label
         mat-menu-item
-        routerLink="/funcionarios"
-      >Listar</a>
+        (click)="chamarFuncionario()"
+      >Funcionarios</label>
+      <label
+      mat-menu-item
+      (click)="chamarCargos()"
+    >Cargos</label>
     </mat-menu>
 
     <button mat-icon-button (click)="authService.signOut()">

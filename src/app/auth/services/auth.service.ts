@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { User } from '../models/user';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService, } from '@auth0/angular-jwt';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmarLogoutComponent } from 'src/app/funcionarios/components/confirmar-logout/confirmar-logout.component';
+import { ConfirmarLogoutComponent } from 'src/app/components/confirmar-logout/confirmar-logout.component';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +60,7 @@ export class AuthService {
   logado(): boolean {
     // o usuário estará logado se o token estiver armazenado
     // e o token ainda for válido
+    
     const token = this.recuperarToken()
 
     if (token == null) {
@@ -67,5 +68,17 @@ export class AuthService {
     }
 
     return !this.jwt.isTokenExpired(token) // testando a validade do token
+  }
+
+  tempoApp() {
+    
+    const token = this.recuperarToken()?.toString()
+    console.log(this.jwt.decodeToken(token).sub)
+    return this.jwt.getTokenExpirationDate(token)
+  }
+  getEmailToken() {
+    const token = this.recuperarToken()?.toString()
+    console.log(this.jwt.decodeToken(token).sub)
+    return this.jwt.decodeToken(token).sub
   }
 }
