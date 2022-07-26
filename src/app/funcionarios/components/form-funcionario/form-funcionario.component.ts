@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { Observable } from 'rxjs';
+
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
+
+import { ConfirmarSaidaComponent } from '../confirmar-saida/confirmar-saida.component';
 
 @Component({
   selector: 'app-form-funcionario',
@@ -22,12 +26,15 @@ export class FormFuncionarioComponent implements OnInit {
   foto!: File
   fotoPreview: string = ''
   salvandoFuncionario: boolean = false
+  funcionario: any;
 
   constructor(
     private fb: FormBuilder,
     private funcService: FuncionarioService,
     private dialogRef: MatDialogRef<FormFuncionarioComponent>, // objeto que permite controlar o dialog aberto
-    private snackbar: MatSnackBar // com esse objeto será criado um snackbar na tela
+    private snackbar: MatSnackBar, // com esse objeto será criado um snackbar na tela
+    private dialog: MatDialog
+   
   ) { }
 
   ngOnInit(): void {
@@ -101,5 +108,15 @@ export class FormFuncionarioComponent implements OnInit {
         }
       }
     )
+  }
+
+  signOut(): void {
+    this.dialog.open(ConfirmarSaidaComponent).afterClosed()
+    .subscribe((out) => {
+      if(out) {
+        
+        this.dialog.closeAll()
+      }
+    })
   }
 }

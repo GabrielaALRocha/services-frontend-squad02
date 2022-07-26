@@ -20,11 +20,13 @@ export class PodeSairGuard implements CanDeactivate<FuncionarioComponent> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    // canDeactivate
     // se o guard retornar o valor TRUE, significa que a pessoa PODE sair da página
     // se o guard retornar o valor FALSE, significa que a pessoa NÃO PODE sair da página
 
     // 1° Pegar os dados do formulário e guardar cada um em variáveis diferentes
 
+    // component.formFuncionario.value.nome esses dados do funcionário serão guardando da variável nome
     const nome = component.formFuncionario.value.nome
     const email = component.formFuncionario.value.email
     const foto = component.formFuncionario.value.foto

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { ConfirmarDelecaoComponent } from '../../components/confirmar-delecao/confirmar-delecao.component';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
@@ -36,6 +37,7 @@ export class FuncionarioComponent implements OnInit {
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router // serve para fazer o redirecionamento entre as páginas do app pelo ts
+    
   ) { }
 
   ngOnInit(): void {

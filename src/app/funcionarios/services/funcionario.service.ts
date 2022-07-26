@@ -5,6 +5,10 @@ import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
 import { AuthService } from 'src/app/auth/services/auth.service';
 
+
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +21,7 @@ export class FuncionarioService {
     private http: HttpClient,
     private storage: AngularFireStorage, // objeto responsável por salvar os arquivos no firebase
     private authService: AuthService
+  
   ) { }
 
   getFuncionarios(): Observable<Funcionario[]> {
@@ -173,4 +178,6 @@ export class FuncionarioService {
 
     return downloadURL
   }
+
+
 }
