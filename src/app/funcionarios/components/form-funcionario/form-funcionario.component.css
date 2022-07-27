@@ -1,3 +1,7 @@
+#menu {
+  margin-left: auto;
+}
+
 #file-input {
   display: none;
 }
@@ -7,10 +11,6 @@ form {
   flex-direction: column;
   width: 400px;
   height: 400px;
-}
-
-#menu {
-  margin-left: auto;
 }
 
 #salvar {
