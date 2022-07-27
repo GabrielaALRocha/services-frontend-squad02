@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 // localhost:4200 -> localhost:4200/funcionarios
 
@@ -11,15 +12,18 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'funcionarios'
+    redirectTo: 'funcionarios',
+    title: "Site ServicesFrontend- Squad02 "
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    title: "Site ServicesFrontend- Squad02 "
   },
   {
     path: 'cargos',
-    loadChildren: () => import('./cargo/cargos.module').then(m =>m.CargoModule)
+    loadChildren: () => import('./cargo/cargos.module').then(m =>m.CargoModule),
+    title: "Site ServicesFrontend- Squad02 "
   }
 ];
 
