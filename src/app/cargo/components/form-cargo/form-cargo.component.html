@@ -1,6 +1,13 @@
 <div>
   <h2 mat-dialog-title>Novo Cargo</h2>
   <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvandoCargo"></mat-spinner>
+
+  <mat-card-header>
+    <button id="menu" mat-icon-button (click)="signOut()">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-card-header>
+
 </div>
 <section mat-dialog-content>
   <form action="" [formGroup]="formCargo" (ngSubmit)="salvar()">

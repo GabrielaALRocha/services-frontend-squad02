@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Cargo } from '../../models/cargo';
 import { CargoService } from '../../services/cargo.service';
+import { ConfirmarSaidaComponent } from '../confirmar-saida/confirmar-saida.component';
 
 @Component({
   selector: 'app-form-cargo',
@@ -25,7 +26,8 @@ export class FormCargoComponent implements OnInit {
     private fb: FormBuilder,
     private cargoService: CargoService,
     private dialogRef: MatDialogRef<FormCargoComponent>,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +47,16 @@ export class FormCargoComponent implements OnInit {
       }
     )
     
+  }
+
+  signOut(): void {
+    this.dialog.open(ConfirmarSaidaComponent).afterClosed()
+    .subscribe((out) => {
+      if(out) {
+        
+        this.dialog.closeAll()
+      }
+    })
   }
 
 }

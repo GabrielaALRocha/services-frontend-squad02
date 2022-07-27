@@ -9,11 +9,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat/'
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { SharedModule } from './components/shared.module';
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
+   
+    
     
   ],
   imports: [
@@ -23,7 +28,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MaterialModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
