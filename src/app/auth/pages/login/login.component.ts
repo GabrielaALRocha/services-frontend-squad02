@@ -13,8 +13,11 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = this.fb.group({
     login: ['', [ Validators.required ]],
-    password: ['', [ Validators.required ]]
+    password: ['', [ Validators.required ]],
+    recaptcha: ['', Validators.required]
   })
+
+  siteKey: string = '6LeDVSchAAAAAIns0CIpcMhwsc3AL0Xv8U902IYw'
 
   constructor(
     private fb: FormBuilder,
@@ -27,7 +30,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    const credenciais = this.loginForm.value
+    const credenciais =  {
+      login: this.loginForm.value.login,
+      password: this.loginForm.value.password
+    }
 
     this.authService.signIn(credenciais)
     .subscribe(

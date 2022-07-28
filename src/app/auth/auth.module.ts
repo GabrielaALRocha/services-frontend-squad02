@@ -6,6 +6,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxCaptchaModule,
+    RecaptchaFormsModule,
+    RecaptchaModule
+    
+    
   ]
 })
 export class AuthModule { }

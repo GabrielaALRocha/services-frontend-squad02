@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { SharedModule } from './components/shared.module';
 
-
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 
 
 @NgModule({
@@ -31,7 +31,9 @@ import { SharedModule } from './components/shared.module';
     AngularFireStorageModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+   
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
