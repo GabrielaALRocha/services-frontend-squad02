@@ -27,6 +27,10 @@
           <span>Este campo é obrigatório</span>
         </mat-error>
       </mat-form-field>
+      <ngx-recaptcha2 #captchaElem
+        [siteKey]="siteKey"
+        formControlName="recaptcha">
+      </ngx-recaptcha2>
       <button type="submit" mat-stroked-button color="primary" matTooltip="Logar " [disabled]="loginForm.invalid" >
         <mat-icon>login</mat-icon>
       </button>
