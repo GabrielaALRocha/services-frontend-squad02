@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'cargos',
     loadChildren: () => import('./cargo/cargos.module').then(m =>m.CargoModule),
     title: "Site ServicesFrontend- Squad02 "
+  },{
+    path: 'clientes',
+    loadChildren: () => import('./clientes/clientes.module').then(m =>m.ClientesModule),
+    title: "Site ServicesFrontend- Squad02 "
   }
 ];
 
