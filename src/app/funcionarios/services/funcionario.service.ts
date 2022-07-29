@@ -21,7 +21,7 @@ export class FuncionarioService {
     private http: HttpClient,
     private storage: AngularFireStorage, // objeto responsável por salvar os arquivos no firebase
     private authService: AuthService
-  
+
   ) { }
 
   getFuncionarios(): Observable<Funcionario[]> {
@@ -40,7 +40,7 @@ export class FuncionarioService {
     const token = this.authService.recuperarToken()
 
     // se não tiver foto, apenas será deletado o email e nome
-    if (func.foto.length > 0) {
+    if (func.foto && func.foto.length > 0) {
       //1° pegar a referência da imagem no fireStorage
       /**
        * refFromURL() pega referência do arquivo do storage pelo link de acesso gerado
