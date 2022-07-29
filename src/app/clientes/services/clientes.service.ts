@@ -37,7 +37,7 @@ export class ClientesService {
 
   deleteCliente(clientes: Clientes): Observable<any> {
     const token = this.auth.recuperarToken()
-    return this.http.delete(`${this.baseUrl}/${clientes.idCliente}`, {
+    return this.http.delete(`${this.baseUrl}/${clientes}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
