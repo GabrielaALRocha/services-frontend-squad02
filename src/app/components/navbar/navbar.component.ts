@@ -27,7 +27,10 @@ export class NavbarComponent implements OnInit {
 
     this.route.navigateByUrl("/funcionarios")
   }
+  chamarPagamento() {
 
+    this.route.navigateByUrl("/pagamentos")
+  }
   chamarCargos() {
 
     this.route.navigateByUrl("/cargos")

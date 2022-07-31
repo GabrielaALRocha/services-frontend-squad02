@@ -120,6 +120,7 @@ export class FuncionarioComponent implements OnInit {
     const f: Funcionario = { ...this.formFuncionario.value }
     f.idFuncionario = this.funcionario.idFuncionario
     f.foto = this.funcionario.foto
+    f.status = this.funcionario.status
 
     const temFoto = this.formFuncionario.value.foto.length > 0
 
@@ -136,7 +137,7 @@ export class FuncionarioComponent implements OnInit {
                 duration: 3000
               })
 
-              this.recuperarFuncionario(func.id)
+              this.recuperarFuncionario(func.idFuncionario)
             }
           )
         }
@@ -145,7 +146,7 @@ export class FuncionarioComponent implements OnInit {
           duration: 3000
         })
 
-        this.recuperarFuncionario(resultado.id)
+        this.recuperarFuncionario(resultado.idFuncionario)
       }
     )
   }

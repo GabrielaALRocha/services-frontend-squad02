@@ -37,7 +37,7 @@ export class ClientesService {
 
   deleteCliente(clientes: Clientes): Observable<any> {
     const token = this.auth.recuperarToken()
-    return this.http.delete(`${this.baseUrl}/${clientes}`, {
+    return this.http.delete<Clientes>(`${this.baseUrl}/${clientes}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -55,7 +55,7 @@ export class ClientesService {
 
   updateCliente(clientes:Clientes) {
     const token = this.auth.recuperarToken()
-    return this.http.put(`${this.baseUrl}/${clientes.idCliente}`, clientes, {
+    return this.http.put<Clientes>(`${this.baseUrl}/${clientes.idCliente}`, clientes, {
       headers: {
         Authorization: `Bearer ${token}`
       }
