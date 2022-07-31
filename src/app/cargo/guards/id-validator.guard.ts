@@ -21,10 +21,10 @@ export class IdValidatorGuard implements CanActivate {
      */
     // isNaN() vai te informar se o valor que você passou como parâmetro não é um número
 
-    const idFuncionario = Number(route.paramMap.get('idFuncionario') as string)
+    const idCargo = Number(route.paramMap.get('idCargo') as string)
 
-    if (isNaN(idFuncionario)) {
-      return this.router.parseUrl('/funcionarios')
+    if (isNaN(idCargo)) {
+      return this.router.parseUrl('/cargos')
     }
 
     return true

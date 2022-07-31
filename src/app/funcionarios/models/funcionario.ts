@@ -5,6 +5,7 @@ export interface Funcionario {
   nome: string
   email: string
   foto: string
+  status: string
   idCargo?: Cargo
 
 }

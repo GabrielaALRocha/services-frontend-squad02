@@ -26,7 +26,11 @@ const routes: Routes = [
     title: "Site ServicesFrontend- Squad02 "
   },{
     path: 'clientes',
-    loadChildren: () => import('./clientes/clientes.module').then(m =>m.ClientesModule),
+    loadChildren: () => import('./clientes/clientes.module').then(m =>m.ClientesModule)
+  },
+  {
+    path: 'pagamentos',
+    loadChildren: () => import('./pagamento/pagamento.module').then(m => m.PagamentoModule),
     title: "Site ServicesFrontend- Squad02 "
   }
 ];

@@ -77,20 +77,12 @@ export class ClientesComponent implements OnInit {
 
     obsSalvar.subscribe(
       (resultado) => {
-        if (resultado instanceof Observable<Clientes>) {
-          resultado
-          .subscribe(
-            (client) => {
-              this.snackbar.open('Cliente salvo com sucesso', 'Ok', {
+              this.snackbar.open('Cargo salvo com sucesso', 'Ok', {
                 duration: 3000
               })
-              this.clientes = client
-              this.recuperarCliente(client.id)
-            }
-          )
-        }
-      }
-    )
+              this.clientes = resultado
+              this.recuperarCliente(resultado.idCliente)
+            })
   }
 
   delete() {
