@@ -76,7 +76,7 @@ export class FuncionarioService {
   }
 
 
-  salvarFuncionario(func: Funcionario, foto?: File, idCargo: number) {
+  salvarFuncionario(func: Funcionario,idCargo: number, foto?: File ) {
     const token = this.authService.recuperarToken()
  
     if (foto == undefined) { 

@@ -64,7 +64,7 @@ export class FormFuncionarioComponent implements OnInit {
   salvar(): void {
     this.salvandoFuncionario = true
     const f: Funcionario = this.formFuncionario.value
-    const idCargo: number = this.formFuncionario.value.cargo.idCargo
+    const idCargo: number = this.formFuncionario.value.idCargo
     let obsSalvar: Observable<any>
 
     if (this.formFuncionario.value.foto.length > 0) {

@@ -45,7 +45,7 @@ export class PagamentoService {
   }
   savePagamento(pag: Pagamento) {
     const token = this.auth.recuperarToken()
-    return this.http.post<Pagamento>(this.baseUrl, pag, {
+    return this.http.post<Pagamento>(`${this.baseUrl}/${pag.idPagamento}`, pag, {
       headers: {
         Authorization: `Bearer ${token}`
       }

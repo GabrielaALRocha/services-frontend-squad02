@@ -3,7 +3,7 @@
     <h1>Services</h1>
     <div class="infos">
 
-      <span class="tempo"><mat-icon class="icon">alarm</mat-icon>{{ tempoToken() | date }}</span>
+      <span class="tempo"><mat-icon class="icon">alarm</mat-icon>{{ tempoToken() | data }}</span>
 
       <span class="email"><mat-icon class="icon">perm_identity</mat-icon>{{getEmailToken()}}</span>
     </div>
@@ -26,6 +26,10 @@
     mat-menu-item
     (click)=" chamarPagamento()"
   >Pagamentos</label>
+  <label
+  mat-menu-item
+  (click)=" chamarChamados()"
+>Chamados</label>
     </mat-menu>
 
     <button mat-icon-button (click)="authService.signOut()" matTooltip="Sign out">

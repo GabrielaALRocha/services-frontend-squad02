@@ -40,6 +40,12 @@ export class NavbarComponent implements OnInit {
 
     this.route.navigateByUrl("/clientes")
   }
+
+  chamarChamados() {
+
+    this.route.navigateByUrl("/chamados")
+  }
+
   getEmailToken(){
     return this.authService.getEmailToken()
   }

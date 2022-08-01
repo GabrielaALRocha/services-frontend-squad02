@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'pagamentos',
     loadChildren: () => import('./pagamento/pagamento.module').then(m => m.PagamentoModule),
     title: "Site ServicesFrontend- Squad02 "
+  },
+  {
+    path: 'chamados',
+    loadChildren: () => import('./chamado/chamado.module').then(m => m.ChamadoModule),
+    title: "Site ServicesFrontend- Squad02 "
   }
 ];
 

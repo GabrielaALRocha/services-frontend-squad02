@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ConfirmarLogoutComponent } from './confirmar-logout/confirmar-logout.component';
 import { MaterialModule } from '../material/material.module';
-import { DatePipe } from '../pipes/date.pipe';
+import { DataPipe } from '../pipes/date.pipe';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ConfirmarLogoutComponent,
-    DatePipe
+    DataPipe
   ],
   imports: [
     MaterialModule
@@ -19,7 +19,7 @@ import { DatePipe } from '../pipes/date.pipe';
   exports: [
     NavbarComponent,
     ConfirmarLogoutComponent,
-    DatePipe
+    DataPipe
   ],
 })
 export class SharedModule { }
