@@ -5,10 +5,6 @@ import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
 import { AuthService } from 'src/app/auth/services/auth.service';
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -79,6 +75,7 @@ export class FuncionarioService {
     })
   }
 
+  
   /**
    * RXJS Operators: funções que manipulam os dados que
    * os observables te retornam
@@ -86,7 +83,7 @@ export class FuncionarioService {
   /**
    * O ? na frente do parâmetro faz com que ele seja opcional na hora de executar a função
    */
-  salvarFuncionario(func: Funcionario, foto?: File) {
+  salvarFuncionario(func: Funcionario, idCargo: number, foto?: File) {
     /**
      * fazendo requisição POST para salvar os dados do funcionário
      * return funcionário que acabou de ser salvo
@@ -101,11 +98,12 @@ export class FuncionarioService {
      * o pipe map manipula cada dado que o observable te retorna,
      * transformando em algo diferente e te retorna esse dado modificado
      */
-    if (foto == undefined) { // se a foto não existe, será retornado um observable que apenas salva os dados básicos
-      return this.http.post<Funcionario>(this.baseUrl, func)
+    // se a foto não existe, será retornado um observable que apenas salva os dados básicos
+    if (foto == undefined) { 
+      return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func)
     }
 
-    return this.http.post<Funcionario>(this.baseUrl, func)
+    return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func)
     .pipe(
       map(async (func) => {
         // 1° Fazer upload da imagem e recuperar o link gerado
@@ -122,7 +120,7 @@ export class FuncionarioService {
 
   // fazer com que a função receba a foto ou não
   atualizarFuncionario(func: Funcionario, foto?: File): any {
-
+    
     // se a foto não foi passada, atualizar apenas com os dados básicos
     if (foto == undefined) {
       return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func)

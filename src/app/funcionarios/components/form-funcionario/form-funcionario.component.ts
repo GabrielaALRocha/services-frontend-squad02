@@ -4,6 +4,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Observable } from 'rxjs';
+import { Cargo } from 'src/app/cargo/models/cargo';
+import { CargoService } from 'src/app/cargo/services/cargo.service';
 
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
@@ -20,24 +22,28 @@ export class FormFuncionarioComponent implements OnInit {
   formFuncionario: FormGroup = this.fb.group({
     nome: ['', [ Validators.required ]],
     email: ['', [ Validators.required, Validators.email ]],
-    foto: ['']
+    foto: [''],
+    idCargo: ['', [Validators.required]]
   })
 
   foto!: File
   fotoPreview: string = ''
   salvandoFuncionario: boolean = false
-  funcionario: any;
+  funcionario: any
+  cargos: Cargo[] = []
 
   constructor(
     private fb: FormBuilder,
     private funcService: FuncionarioService,
     private dialogRef: MatDialogRef<FormFuncionarioComponent>, // objeto que permite controlar o dialog aberto
     private snackbar: MatSnackBar, // com esse objeto será criado um snackbar na tela
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cargoService: CargoService
    
   ) { }
 
   ngOnInit(): void {
+   this.mostrarCargos()
   }
 
   recuperarFoto(event: any): void {
@@ -58,12 +64,13 @@ export class FormFuncionarioComponent implements OnInit {
   salvar(): void {
     this.salvandoFuncionario = true
     const f: Funcionario = this.formFuncionario.value
+    const idCargo: number = this.formFuncionario.value.cargo.idCargo
     let obsSalvar: Observable<any>
 
     if (this.formFuncionario.value.foto.length > 0) {
-      obsSalvar = this.funcService.salvarFuncionario(f, this.foto)
+      obsSalvar = this.funcService.salvarFuncionario(f, idCargo,this.foto)
     } else {
-      obsSalvar = this.funcService.salvarFuncionario(f)
+      obsSalvar = this.funcService.salvarFuncionario(f,idCargo)
     }
 
     obsSalvar.subscribe(
@@ -119,4 +126,13 @@ export class FormFuncionarioComponent implements OnInit {
       }
     })
   }
+
+  mostrarCargos() {
+    this.cargoService.getCargos()
+    .subscribe((cargo) => {
+      this.cargos = cargo
+    })
+  }
+
+ 
 }
