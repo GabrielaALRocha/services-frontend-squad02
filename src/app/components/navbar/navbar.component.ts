@@ -11,13 +11,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
+
 
 
   constructor(
     public authService: AuthService,
     private route: Router,
-    
+
   ) { }
 
   ngOnInit(): void {
@@ -27,10 +27,18 @@ export class NavbarComponent implements OnInit {
 
     this.route.navigateByUrl("/funcionarios")
   }
+  chamarPagamento() {
 
+    this.route.navigateByUrl("/pagamentos")
+  }
   chamarCargos() {
 
     this.route.navigateByUrl("/cargos")
+  }
+
+  chamarClientes() {
+
+    this.route.navigateByUrl("/clientes")
   }
   getEmailToken(){
     return this.authService.getEmailToken()

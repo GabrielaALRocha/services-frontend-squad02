@@ -2,9 +2,9 @@
   <mat-toolbar-row>
     <h1>Services</h1>
     <div class="infos">
-      
+
       <span class="tempo"><mat-icon class="icon">alarm</mat-icon>{{ tempoToken() | date }}</span>
-      
+
       <span class="email"><mat-icon class="icon">perm_identity</mat-icon>{{getEmailToken()}}</span>
     </div>
     <span class="separador"></span>
@@ -18,6 +18,14 @@
       mat-menu-item
       (click)="chamarCargos()"
     >Cargos</label>
+    <label
+      mat-menu-item
+      (click)="chamarClientes()"
+    >Clientes</label>
+    <label
+    mat-menu-item
+    (click)=" chamarPagamento()"
+  >Pagamentos</label>
     </mat-menu>
 
     <button mat-icon-button (click)="authService.signOut()" matTooltip="Sign out">

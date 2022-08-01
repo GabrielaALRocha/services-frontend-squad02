@@ -17,14 +17,14 @@ export class FuncionarioService {
     private http: HttpClient,
     private storage: AngularFireStorage, // objeto responsável por salvar os arquivos no firebase
     private authService: AuthService
-  
+
   ) { }
 
   getFuncionarios(): Observable<Funcionario[]> {
     const token = this.authService.recuperarToken()
 
     // Bearer token
-    return this.http.get<Funcionario[]>(this.baseUrl, {
+    return this.http.get<Funcionario[]>(`${this.baseUrl}/ativos`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -36,7 +36,7 @@ export class FuncionarioService {
     const token = this.authService.recuperarToken()
 
     // se não tiver foto, apenas será deletado o email e nome
-    if (func.foto.length > 0) {
+    if (func.foto && func.foto.length > 0) {
       //1° pegar a referência da imagem no fireStorage
       /**
        * refFromURL() pega referência do arquivo do storage pelo link de acesso gerado
@@ -75,55 +75,49 @@ export class FuncionarioService {
     })
   }
 
-  
-  /**
-   * RXJS Operators: funções que manipulam os dados que
-   * os observables te retornam
-   */
-  /**
-   * O ? na frente do parâmetro faz com que ele seja opcional na hora de executar a função
-   */
-  salvarFuncionario(func: Funcionario, idCargo: number, foto?: File) {
-    /**
-     * fazendo requisição POST para salvar os dados do funcionário
-     * return funcionário que acabou de ser salvo
-     */
 
-    /**
-     * a função pipe é utilizada para colocar os operadores do RXJS
-     * que manipularão os dados que são retornados dos observables
-     */
-
-    /**
-     * o pipe map manipula cada dado que o observable te retorna,
-     * transformando em algo diferente e te retorna esse dado modificado
-     */
-    // se a foto não existe, será retornado um observable que apenas salva os dados básicos
+  salvarFuncionario(func: Funcionario, foto?: File, idCargo: number) {
+    const token = this.authService.recuperarToken()
+ 
     if (foto == undefined) { 
-      return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func)
+      return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }})
     }
 
-    return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func)
+    return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }})
+
     .pipe(
       map(async (func) => {
-        // 1° Fazer upload da imagem e recuperar o link gerado
+       
         const linkFotoFirebase = await this.uploadImagem(foto)
 
-        // 2° Atribuir o link gerado ao funcionário criado
+      
         func.foto = linkFotoFirebase
 
-        // 3° Atualizar funcionário com a foto
+     
         return this.atualizarFuncionario(func)
       })
     )
   }
 
   // fazer com que a função receba a foto ou não
-  atualizarFuncionario(func: Funcionario, foto?: File): any {
+
+  atualizarFuncionario(func: Funcionario, foto?: File): any{
+    const token = this.authService.recuperarToken()
+
     
     // se a foto não foi passada, atualizar apenas com os dados básicos
     if (foto == undefined) {
-      return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func)
+      return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func , {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .pipe(
         tap((funcionario) => {
           this.atualizarFuncionariosSub$.next(true)
@@ -133,7 +127,7 @@ export class FuncionarioService {
 
 
     // se já existir uma foto ligada a esse funcionário, iremos deletá-la para pôr a nova
-    if (func.foto.length > 0) {
+    if (func.foto && func.foto.length > 0) {
       const inscricao = this.storage.refFromURL(func.foto).delete()
       .subscribe(
         () => {
@@ -142,7 +136,11 @@ export class FuncionarioService {
       )
     }
 
-    return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func).pipe(
+    return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).pipe(
       mergeMap(async (funcionarioAtualizado) => {
         const linkFotoFirebase = await this.uploadImagem(foto)
 

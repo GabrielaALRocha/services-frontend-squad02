@@ -80,20 +80,12 @@ export class CargoComponent implements OnInit {
   
     obsSalvar.subscribe(
       (resultado) => {
-        if (resultado instanceof Observable<Cargo>) {
-          resultado
-          .subscribe(
-            (carg) => {
               this.snackbar.open('Cargo salvo com sucesso', 'Ok', {
                 duration: 3000
               })
-              this.cargo = carg
-              this.recuperarCargo(carg.id)
-            }
-          )
-        }
-      }
-    )
+              this.cargo = resultado
+              this.recuperarCargo(resultado.idCargo)
+            })
   }
 
   delete() {
