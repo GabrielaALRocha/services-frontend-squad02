@@ -5,10 +5,6 @@ import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
 import { AuthService } from 'src/app/auth/services/auth.service';
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -79,20 +75,22 @@ export class FuncionarioService {
     })
   }
 
-  salvarFuncionario(func: Funcionario, foto?: File) {
+
+  salvarFuncionario(func: Funcionario, foto?: File, idCargo: number) {
     const token = this.authService.recuperarToken()
-    
-    if (foto == undefined) { // se a foto não existe, será retornado um observable que apenas salva os dados básicos
-      return this.http.post<Funcionario>(this.baseUrl, func, {
+ 
+    if (foto == undefined) { 
+      return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func, {
         headers: {
           Authorization: `Bearer ${token}`
         }})
     }
 
-    return this.http.post<Funcionario>(this.baseUrl, func, {
+    return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func, {
       headers: {
         Authorization: `Bearer ${token}`
       }})
+
     .pipe(
       map(async (func) => {
        
@@ -108,8 +106,10 @@ export class FuncionarioService {
   }
 
   // fazer com que a função receba a foto ou não
+
   atualizarFuncionario(func: Funcionario, foto?: File): any{
     const token = this.authService.recuperarToken()
+
     
     // se a foto não foi passada, atualizar apenas com os dados básicos
     if (foto == undefined) {
