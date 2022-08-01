@@ -22,9 +22,6 @@ export class ListarClientesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // 1° sucesso -> retorna os dados
-    // 2° erro -> ocorre um erro na fonte de dados
-    // 3° complete -> a fonte de dados te retorna tudo
 
     this.clientesService.atualizarClientesSub$
     .subscribe(

@@ -7,6 +7,10 @@ import { ListarChamadosComponent } from './pages/listar-chamados/listar-chamados
 import { ConfirmarDelecaoComponent } from './components/confirmar-delecao/confirmar-delecao.component';
 import { ConfirmarSaidaComponent } from './components/confirmar-saida/confirmar-saida.component';
 import { FormChamadoComponent } from './components/form-chamado/form-chamado.component';
+import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../components/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { FormChamadoComponent } from './components/form-chamado/form-chamado.com
   ],
   imports: [
     CommonModule,
-    ChamadoRoutingModule
+    ChamadoRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule
   ]
 })
 export class ChamadoModule { }

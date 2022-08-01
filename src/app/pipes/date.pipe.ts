@@ -4,9 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
 
 @Pipe({
-  name: 'date'
+  name: 'data'
 })
-export class DatePipe implements PipeTransform {
+export class DataPipe implements PipeTransform {
 
   transform(date: any): any  {
   

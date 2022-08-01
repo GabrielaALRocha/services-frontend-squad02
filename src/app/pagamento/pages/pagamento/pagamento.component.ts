@@ -30,9 +30,10 @@ export class PagamentoComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private snackbar: MatSnackBar,
-    private dialog: MatDialog,
-    private pagamentoService: PagamentoService
+    private snackbar: MatSnackBar, 
+    private pagamentoService: PagamentoService,
+    private dialog: MatDialog
+   
   ) { }
 
   ngOnInit(): void {

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { Chamado } from 'src/app/chamado/models/chamado';
 import { Pagamento } from '../../models/pagamento';
 import { PagamentoService } from '../../services/pagamento.service';
 import { ConfirmarDelecaoComponent } from '../confirmar-delecao/confirmar-delecao.component';
